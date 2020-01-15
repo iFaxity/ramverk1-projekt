@@ -67,7 +67,7 @@ class RegisterForm extends FormModel
 
         if ($password !== $passwordVerify) {
             $this->form->rememberValues();
-            $this->di->flash->error("Passwords did not match");
+            $this->di->flash->err("Passwords did not match");
             return false;
         }
 

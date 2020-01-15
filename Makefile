@@ -142,6 +142,7 @@ build: test doc #theme less-compile less-minify js-minify
 .PHONY:  install
 install: prepare install-tools-php install-tools-bash
 	@$(call HELPTEXT,$@)
+	[ -d cache ] || mkdir -m=777 -p cache/anax cache/cimage cache/test
 	composer install
 
 
@@ -296,6 +297,7 @@ check-tools-php:
 .PHONY: phpunit
 phpunit: prepare
 	@$(call HELPTEXT,$@)
+	rm -rf cache/test/*
 	[ ! -d test ] || $(PHPUNIT) --configuration .phpunit.xml $(options)
 
 

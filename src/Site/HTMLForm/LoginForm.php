@@ -61,7 +61,7 @@ class LoginForm extends FormModel
             return true;
         } catch (\Faxity\Auth\Exception $ex) {
             $this->form->rememberValues();
-            $this->di->flash->error($ex->getMessage());
+            $this->di->flash->err($ex->getMessage());
             return false;
         }
     }

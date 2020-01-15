@@ -81,7 +81,7 @@ class ProfileForm extends FormModel
                 $user->setPassword($password);
             } else {
                 $this->form->rememberValues();
-                $this->di->flash->error("Passwords did not match");
+                $this->di->flash->err("Passwords did not match");
                 return false;
             }
         }

@@ -6,7 +6,7 @@
 return [
     ANAX_INSTALL_PATH,
     "faxity/anax-layout",
-    //"anax/cache",
+    "anax/cache",
     "anax/configure",
     "anax/content",
     "anax/database",
