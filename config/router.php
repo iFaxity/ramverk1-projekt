@@ -14,5 +14,31 @@ return [
 
     // Load routes in order, start with these and the those found in
     // router/*.php.
-    "routes" => [],
+    "routes" => [
+        [
+            "info" => "Questions controller.",
+            "mount" => "question",
+            "handler" => "\Faxity\Question\Controller",
+        ],
+        [
+            "info" => "Answers controller.",
+            "mount" => "answer",
+            "handler" => "\Faxity\Answer\Controller",
+        ],
+        [
+            "info" => "Comments controller.",
+            "mount" => "comment",
+            "handler" => "\Faxity\Comment\Controller",
+        ],
+        [
+            "info" => "Tags controller.",
+            "mount" => "tags",
+            "handler" => "\Faxity\Tag\Controller",
+        ],
+        [
+            "info" => "Site controller.",
+            "mount" => null,
+            "handler" => "\Faxity\Site\Controller",
+        ],
+    ],
 ];
