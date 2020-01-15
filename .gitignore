@@ -1,6 +1,6 @@
 /.anax
 /.bin
-/cache
+/cache/*/*
 /build
 /vendor
 /doc/api
