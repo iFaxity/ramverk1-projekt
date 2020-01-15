@@ -84,6 +84,10 @@ class DatabaseModel extends ActiveRecordModel
 
     /**
      * Gets all rows by a certain order
+     * @param string   $orderBy SQL style ORDER BY condition.
+     * @param int|null $limit Limits records by amount
+     *
+     * @return array
      */
     public function findAllTop(string $orderBy, ?int $limit = null): array
     {
@@ -107,7 +111,7 @@ class DatabaseModel extends ActiveRecordModel
 
     /**
      * Maps database connection to each model
-     * @param array $models
+     * @param array $models Database models to map
      *
      * @return array
      */

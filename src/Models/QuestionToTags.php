@@ -24,11 +24,18 @@ class QuestionToTags extends DatabaseModel
     protected $tagId;
 
 
+    /**
+     * Finds all questions with tag
+     * @param string $tag Tag to match
+     *
+     * @return array
+     */
     public function findAllWithTag(string $tag): array
     {
         $this->checkDb();
         $this->db->connect();
 
+        $tag = strtolower($tag);
         $questions = $this->db->select("q.*")
             ->from("{$this->tableName} AS qt")
             ->join("Tag AS t", "t.id = qt.tagId")

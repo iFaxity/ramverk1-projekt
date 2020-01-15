@@ -8,7 +8,7 @@ use Psr\Container\ContainerInterface;
 use Faxity\Models\Comment;
 
 /**
- * Form to update an item.
+ * Form to create a comment for an answer.
  */
 class AnswerForm extends FormModel
 {

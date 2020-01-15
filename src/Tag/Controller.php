@@ -4,21 +4,26 @@ namespace Faxity\Tag;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
+use Anax\Route\Exception\NotFoundException;
 use Faxity\Models\Tag;
 use Faxity\Models\QuestionToTags;
 
 /**
- * A controller for /tags routes.
+ * A controller to show tags and questions linked to specific tags
  */
 class Controller implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-    public function catchAll(...$args)
+    /**
+     * Renders view for showing questions linked to tag
+     *
+     * @return object
+    */
+    public function catchAll(...$args): object
     {
         if (count($args) != 1) {
-            return false;
+            throw new NotFoundException("Tag doesn't exist");
         }
 
         $tag = strtolower($args[0]); // tag name
@@ -36,7 +41,13 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function indexActionGet()
+
+    /**
+     * Renders view for showing all tags
+     *
+     * @return object
+    */
+    public function indexActionGet(): object
     {
         $tag = new Tag($this->di->dbqb);
         $tags = $tag->findAllByQuestionCount();

@@ -11,7 +11,7 @@ use Faxity\Models\QuestionToTags;
 use function Anax\View\previewMarkdown;
 
 /**
- * Form to update an item.
+ * Form to update a question.
  */
 class UpdateForm extends FormModel
 {

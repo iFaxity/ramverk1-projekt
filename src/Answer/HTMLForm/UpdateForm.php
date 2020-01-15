@@ -7,7 +7,7 @@ use Anax\HTMLForm\FormModel;
 use Faxity\Models\Answer;
 
 /**
- * Form to update an item.
+ * Form to update an answer.
  */
 class UpdateForm extends FormModel
 {

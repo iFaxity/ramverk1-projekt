@@ -9,7 +9,7 @@ use Faxity\Models\Tag;
 use Faxity\Models\QuestionToTags;
 
 /**
- * Form to update an item.
+ * Form to update a question.
  */
 class CreateForm extends FormModel
 {

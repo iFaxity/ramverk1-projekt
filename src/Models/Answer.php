@@ -22,6 +22,8 @@ class Answer extends Post
 
     /**
      * Gets the comments of this post
+     *
+     * @return array
      */
     public function comments(): array
     {

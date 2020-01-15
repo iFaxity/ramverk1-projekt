@@ -15,14 +15,19 @@ use Faxity\Models\Comment;
 use Faxity\Models\Question;
 
 /**
- * A controller for flat file markdown content.
+ * A controller to create, modify and delete comments
  */
 class Controller implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-    public function questionAction($id)
+    /**
+     * Route to handle comment form for question
+     * @param mixed $id Id of question to comment
+     *
+     * @return object
+    */
+    public function questionAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -34,7 +39,6 @@ class Controller implements ContainerInjectableInterface
 
         if (is_null($question->id)) {
             throw new ForbiddenException("Question doesn't exist");
-            return false;
         }
 
         $form = new QuestionForm($this->di, $id);
@@ -50,7 +54,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function answerAction($id)
+
+    /**
+     * Route to handle comment form for answer
+     * @param mixed $id Id of answer to comment
+     *
+     * @return object
+    */
+    public function answerAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -77,7 +88,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function updateAction($id)
+
+    /**
+     * Route to handle update form for comment
+     * @param mixed $id Id of comment
+     *
+     * @return object
+    */
+    public function updateAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -106,7 +124,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function deleteAction($id)
+
+    /**
+     * Route to handle delete form for comment
+     * @param mixed $id Id of comment
+     *
+     * @return object
+    */
+    public function deleteAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -135,7 +160,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function upvoteActionPost($id)
+
+    /**
+     * Route to upvote comment
+     * @param mixed $id Id of comment to upvote
+     *
+     * @return array
+    */
+    public function upvoteActionPost($id): array
     {
         $json = [];
 
@@ -164,7 +196,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function downvoteActionPost($id)
+
+    /**
+     * Route to downvote comment
+     * @param mixed $id Id of comment to downvote
+     *
+     * @return array
+    */
+    public function downvoteActionPost($id): array
     {
         $json = [];
 

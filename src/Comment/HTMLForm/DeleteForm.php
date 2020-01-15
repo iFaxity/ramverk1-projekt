@@ -8,7 +8,7 @@ use Psr\Container\ContainerInterface;
 use Faxity\Models\Comment;
 
 /**
- * Form to delete an item.
+ * Form to delete a comment.
  */
 class DeleteForm extends FormModel
 {

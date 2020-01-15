@@ -11,13 +11,18 @@ use Faxity\Answer\HTMLForm\DeleteForm;
 use Faxity\Models\Answer;
 
 /**
- * A controller for flat file markdown content.
+ * A controller to create, modify and delete answers
  */
 class Controller implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
+    /**
+     * Route to handle update form for answer
+     * @param mixed $id Id of answer to update
+     *
+     * @return object
+    */
     public function updateAction($id)
     {
         // Route guard for already logged in
@@ -47,7 +52,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function deleteAction($id)
+
+    /**
+     * Route to handle delete form for answer
+     * @param mixed $id Id of answer to delete
+     *
+     * @return object
+    */
+    public function deleteAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -76,7 +88,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function upvoteActionPost($id)
+
+    /**
+     * Route to upvote answer
+     * @param mixed $id Id of answer to upvote
+     *
+     * @return array
+    */
+    public function upvoteActionPost($id): array
     {
         $json = [];
 
@@ -105,7 +124,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function downvoteActionPost($id)
+
+    /**
+     * Route to downvote answer
+     * @param mixed $id Id of answer to downvote
+     *
+     * @return array
+    */
+    public function downvoteActionPost($id): array
     {
         $json = [];
 

@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 use Faxity\Models\User;
 
 /**
- * Form to update an item.
+ * Form to update the logged in users profile.
  */
 class ProfileForm extends FormModel
 {

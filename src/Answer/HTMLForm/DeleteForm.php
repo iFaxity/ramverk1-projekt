@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 use Faxity\Models\Answer;
 
 /**
- * Form to delete an item.
+ * Form to delete an answer.
  */
 class DeleteForm extends FormModel
 {

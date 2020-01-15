@@ -20,8 +20,13 @@ class Tag extends DatabaseModel
     protected $tag;
 
 
-    // Get tags with most questions linked
-    public function findAllByQuestionCount(?int $limit = null)
+    /**
+     * Get tags with most questions linked
+     * @param int|null $limit Limits how many questions to get
+     *
+     * @return array
+     */
+    public function findAllByQuestionCount(?int $limit = null): array
     {
         $this->checkDb();
         $this->db->connect();

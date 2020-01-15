@@ -16,7 +16,7 @@ use Faxity\Site\HTMLForm\RegisterForm;
 use Faxity\Site\HTMLForm\ProfileForm;
 
 /**
- * A controller for flat file markdown content.
+ * A controller to handle common site routes, like authentication.
  */
 class Controller implements ContainerInjectableInterface
 {
@@ -29,7 +29,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return bool
      */
-    public function catchAll(...$args)
+    public function catchAll(...$args): bool
     {
         return false;
     }
@@ -40,7 +40,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function indexActionGet()
+    public function indexActionGet(): object
     {
         $user = new User($this->di->dbqb);
         $question = new Question($this->di->dbqb);
@@ -50,7 +50,6 @@ class Controller implements ContainerInjectableInterface
         $questions = $question->findAllTop("created DESC", 5);
         $tags = $tag->findAllByQuestionCount(5);
 
-        // TODO: add data here right?
         $this->di->page->add("site/index", [
             "questions" => $questions,
             "tags"      => $tags,
@@ -68,7 +67,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function aboutActionGet()
+    public function aboutActionGet(): object
     {
         $content = $this->di->content->contentForRoute("about");
 
@@ -81,11 +80,12 @@ class Controller implements ContainerInjectableInterface
 
 
     /**
-     * Show user page for a specific user or list users
+     * Show user page for a specific user or list all users
+     * @param string|null $alias Alias of user to get
      *
      * @return object|bool
      */
-    public function usersActionGet(string $alias = null)
+    public function usersActionGet(?string $alias = null): object
     {
         $user = new User($this->di->dbqb);
 
@@ -128,7 +128,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function profileAction()
+    public function profileAction(): object
     {
         if (!$this->di->auth->loggedIn()) {
             throw new ForbiddenException("Unauthorized, login first to view this page!");
@@ -154,7 +154,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function loginAction()
+    public function loginAction(): object
     {
         // Route guard for already logged in
         if ($this->di->auth->loggedIn()) {
@@ -179,7 +179,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function registerAction()
+    public function registerAction(): object
     {
         // Route guard for already logged in
         if ($this->di->auth->loggedIn()) {
@@ -204,7 +204,7 @@ class Controller implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function logoutActionGet()
+    public function logoutActionGet(): object
     {
         // Destroy user id from session
         $this->di->auth->logout();

@@ -48,7 +48,11 @@ class Post extends DatabaseModel
     }
 
 
-    // TODO: method for saving votes
+    /**
+     * Gets current voting reputation of this post
+     *
+     * @return int
+     */
     public function votes(): int
     {
         $this->checkDb();
@@ -72,6 +76,8 @@ class Post extends DatabaseModel
 
     /**
      * Gets the author of this post
+     *
+     * @return User
      */
     public function author(): User
     {

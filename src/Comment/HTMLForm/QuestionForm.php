@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 use Faxity\Models\Comment;
 
 /**
- * Form to update an item.
+ * Form to create a comment for a question.
  */
 class QuestionForm extends FormModel
 {

@@ -14,14 +14,18 @@ use Faxity\Question\HTMLForm\DeleteForm;
 use Faxity\Question\HTMLForm\AnswerForm;
 
 /**
- * A controller for flat file markdown content.
+ * A controller to create, modify and delete questions
  */
 class Controller implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-    public function catchAll(...$args)
+    /**
+     * Renders view for showing a specific question
+     *
+     * @return object
+    */
+    public function catchAll(...$args): object
     {
         if (count($args) != 1 || !ctype_digit($args[0])) {
             throw new NotFoundException("Question doesn't exist");
@@ -68,7 +72,13 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function indexActionGet()
+
+    /**
+     * Renders view for showing all questions
+     *
+     * @return object
+    */
+    public function indexActionGet(): object
     {
         $question = new Question($this->di->dbqb);
         $questions = $question->findAllTop("created DESC");
@@ -84,7 +94,13 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function createAction()
+
+    /**
+     * Route to handle create form for question
+     *
+     * @return object
+    */
+    public function createAction(): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -104,7 +120,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function updateAction($id)
+
+    /**
+     * Route to handle update form for question
+     * @param mixed $id Id of question
+     *
+     * @return object
+    */
+    public function updateAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -133,7 +156,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function deleteAction($id)
+
+    /**
+     * Route to handle delete form for question
+     * @param mixed $id Id of question
+     *
+     * @return object
+    */
+    public function deleteAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -162,7 +192,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function answerAction($id)
+
+    /**
+     * Route to handle answer form for question
+     * @param mixed $id Id of question
+     *
+     * @return object
+    */
+    public function answerAction($id): object
     {
         // Route guard for already logged in
         if (!$this->di->auth->loggedIn()) {
@@ -191,7 +228,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function upvoteActionPost($id)
+
+    /**
+     * Route to upvote question
+     * @param mixed $id Id of question to upvote
+     *
+     * @return array
+    */
+    public function upvoteActionPost($id): array
     {
         $json = [];
 
@@ -220,7 +264,14 @@ class Controller implements ContainerInjectableInterface
     }
 
 
-    public function downvoteActionPost($id)
+
+    /**
+     * Route to downvote question
+     * @param mixed $id Id of question to downvote
+     *
+     * @return array
+    */
+    public function downvoteActionPost($id): array
     {
         $json = [];
 
