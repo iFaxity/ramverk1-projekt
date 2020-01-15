@@ -1,0 +1,222 @@
+/*!
+ * Default theme for website.
+ */
+
+// Theme variables
+$primary: #37474f;
+$primaryText: #fff;
+$secondary: #d81b60;
+$secondaryText: #fff;
+$background: #dae3e7;
+$footerColumns: 2;
+$maxContentWidth: 1000px;
+@import '../vendor/faxity/anax-layout/theme/theme';
+
+pre {
+  max-height: 30em;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.region-header-logo {
+  font-size: 1.5em;
+}
+
+.htmlform {
+  textarea {
+    max-width: 50em;
+    width: 100%;
+    height: 10em;
+  }
+
+  input:not([type=submit]) {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+
+.users {
+  .user {
+    text-decoration: none;
+
+    span.alias {
+      display: inline-block;
+    }
+
+    img {
+      display: inline-block;
+    }
+  }
+}
+
+.sorting {
+  text-align: right;
+  float: right;
+}
+
+.icon {
+  @extend %fa-icon;
+
+  &::before {
+    @extend .fas;
+  }
+
+  &.disabled {
+    color: #888;
+    pointer-events: none;
+  }
+
+  &.edit::before {
+    content: fa-content($fa-var-edit);
+  }
+
+  &.delete::before {
+    content: fa-content($fa-var-trash);
+  }
+
+  &.upvote::before {
+    content: fa-content($fa-var-thumbs-up);
+  }
+
+  &.downvote::before {
+    content: fa-content($fa-var-thumbs-down);
+  }
+
+  &.date::before {
+    content: fa-content($fa-var-calendar-alt);
+  }
+
+  &.rep::before {
+    content: fa-content($fa-var-arrow-circle-up);
+  }
+}
+
+.question {
+  .icon.edit,
+  .icon.delete {
+    font-size: 1.5em;
+  }
+}
+
+.question,
+.answer {
+  position: relative;
+  border-bottom: 1px solid darkgray;
+  margin: 0 1em 1em;
+  padding-bottom: 1em;
+
+  &.own {
+    margin-top: 3em;
+  }
+
+  .icon.edit,
+  .icon.delete {
+    position: absolute;
+    cursor: pointer;
+    top: -1.5rem;
+  }
+
+  .edit {
+    left: 0;
+  }
+
+  .delete {
+    left: 1.5em;
+  }
+
+  .content {
+    margin: -1em 0;
+    margin-bottom: 0.5em;
+  }
+
+  .actions {
+    padding: 0.5em;
+    display: block;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .left {
+      display: flex;
+      flex: 0;
+      min-width: 8em;
+      position: relative;
+      align-items: center;
+
+      .vote {
+        display: inline-block;
+
+        .icon {
+          &.upvote,
+          &.downvote {
+            cursor: pointer;
+            transition: color 0.2s ease;
+            font-weight: normal;
+
+            &::before {
+              margin: 0 0.5em;
+            }
+          }
+
+          &.upvote:hover
+          &.upvote.active{
+            color: lime;
+          }
+
+          &.downvote:hover,
+          &.downvote.active {
+            color: red;
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .timestamps {
+        font-size: 0.8em;
+
+        .timestamp {
+          margin: 0 0.3em;
+        }
+      }
+
+      .author {
+        text-decoration: none;
+
+        span.alias {
+          display: inline-block;
+        }
+
+        img {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .comments {
+    padding-left: 2em;
+    margin-bottom: 1em;
+    
+    .comment {
+      position: relative;
+      border-bottom: 1px solid darkgray;
+
+      &.own {
+        margin-top: 3em;
+      }
+
+      .content {
+        margin: -1em 0;
+      }
+    }
+  }
+}
