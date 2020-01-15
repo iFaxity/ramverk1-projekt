@@ -14,6 +14,8 @@ build:
           - php-scrutinizer-run
     phpunit:
       tests:
+        before:
+          - make install
         override:
           - command: make phpunit
             coverage:
