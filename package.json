@@ -1,0 +1,22 @@
+{
+  "name": "ramverk1",
+  "version": "5.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "watch": "node ./theme watch",
+    "build": "node ./theme build"
+  },
+  "browserslist": [
+    "last 2 version"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "autoprefixer": "^9.7.1",
+    "cssnano": "^4.1.10",
+    "normalize-scss": "^7.0.1",
+    "postcss": "^7.0.21",
+    "sass": "^1.23.3"
+  }
+}

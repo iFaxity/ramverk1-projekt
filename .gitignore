@@ -1,0 +1,9 @@
+/.anax
+/.bin
+/cache
+/build
+/vendor
+/doc/api
+node_modules/
+memory::
+composer.lock
