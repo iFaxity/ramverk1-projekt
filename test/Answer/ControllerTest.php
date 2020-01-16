@@ -77,7 +77,7 @@ class ControllerTest extends ControllerTestCase
 
         // Check if redirect header is set
         $headers = $this->di->response->getHeaders();
-        $url = $this->di->url->create("question/1");
+        $url = $this->di->url->create("question/1#answer1");
         $this->assertContains("Location: $url", $headers);
 
         // Check that the answer updated

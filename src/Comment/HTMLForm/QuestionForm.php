@@ -11,6 +11,9 @@ use Faxity\Models\Comment;
  */
 class QuestionForm extends FormModel
 {
+    /** @var Comment $comment */
+    private $comment;
+
     /**
      * Constructor injects with DI container.
      *
@@ -54,11 +57,11 @@ class QuestionForm extends FormModel
      */
     public function callbackSubmit() : bool
     {
-        $comment = new Comment($this->di->dbqb);
-        $comment->questionId = $this->form->value("id");
-        $comment->content = trim(htmlspecialchars_decode($this->form->value("content")));
-        $comment->userId = $this->di->auth->user->id;
-        $comment->save();
+        $this->comment = new Comment($this->di->dbqb);
+        $this->comment->questionId = $this->form->value("id");
+        $this->comment->content = trim(htmlspecialchars_decode($this->form->value("content")));
+        $this->comment->userId = $this->di->auth->user->id;
+        $this->comment->save();
         return true;
     }
 
@@ -71,8 +74,10 @@ class QuestionForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $id = $this->form->value("id");
+        $questionId = $this->comment->questionId;
+        $commentId = $this->comment->id;
+
         $this->di->flash->ok("Comment successfully created");
-        $this->di->response->redirect("question/$id")->send();
+        $this->di->response->redirect("question/$questionId#comment$commentId")->send();
     }
 }

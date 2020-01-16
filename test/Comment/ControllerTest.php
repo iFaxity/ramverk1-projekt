@@ -79,8 +79,9 @@ class ControllerTest extends ControllerTestCase
         $this->assertInstanceOf(\Anax\Response\Response::class, $res);
 
         // Check if redirect header is set
+        $nextId = $comments + 1;
         $headers = $this->di->response->getHeaders();
-        $url = $this->di->url->create("question/1");
+        $url = $this->di->url->create("question/1#comment$nextId");
         $this->assertContains("Location: $url", $headers);
 
         // Check that the comment was created
@@ -131,8 +132,9 @@ class ControllerTest extends ControllerTestCase
         $this->assertInstanceOf(\Anax\Response\Response::class, $res);
 
         // Check if redirect header is set
+        $nextId = $comments + 1;
         $headers = $this->di->response->getHeaders();
-        $url = $this->di->url->create("question/2");
+        $url = $this->di->url->create("question/2#comment$nextId");
         $this->assertContains("Location: $url", $headers);
 
         // Check that the comment was created
@@ -180,13 +182,14 @@ class ControllerTest extends ControllerTestCase
         $this->assertInstanceOf(\Anax\Response\Response::class, $res);
 
         // Check if redirect header is set
+        $commentId = 1;
         $headers = $this->di->response->getHeaders();
-        $url = $this->di->url->create("question/3");
+        $url = $this->di->url->create("question/3#comment$commentId");
         $this->assertContains("Location: $url", $headers);
 
         // Check that the answer updated
         $comment = new Comment($this->di->dbqb);
-        $comment = $comment->findById(1);
+        $comment = $comment->findById($commentId);
         $this->assertInstanceOf(Comment::class, $comment);
         $this->assertEquals($comment->content, "Updated content");
     }

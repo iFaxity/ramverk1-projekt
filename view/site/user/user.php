@@ -25,7 +25,7 @@ namespace Anax\View;
 <ul class="answers">
     <?php foreach ($answers as $answer) : ?>
         <li>
-            <a href="<?= url("question/$answer->questionId") ?>"><?= previewMarkdown($answer->content) ?></a>
+            <a href="<?= url("question/$answer->questionId#answer$answer->id") ?>"><?= previewMarkdown($answer->content) ?></a>
         </li>
     <?php endforeach; ?>
 </ul>
@@ -34,7 +34,7 @@ namespace Anax\View;
 <ul class="comments">
     <?php foreach ($comments as $comment) : ?>
         <li>
-            <a href="<?= url("question/$comment->questionId") ?>"><?= previewMarkdown($comment->content) ?></a>
+            <a href="<?= url("question/$comment->questionId#comment$comment->id") ?>"><?= previewMarkdown($comment->content) ?></a>
         </li>
     <?php endforeach; ?>
 </ul>

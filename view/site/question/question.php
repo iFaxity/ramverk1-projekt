@@ -48,6 +48,7 @@ function printEdit($post, $type)
     <div class="comments">
         <?php foreach ($question->comments() as $comment) : ?>
             <div class="comment <?= ownPost($comment) ? "own" : "" ?>">
+                <a class="anchor" name="comment<?= $comment->id ?>"></a>
                 <?= printEdit($comment, "comment") ?>
                 <div class="content"><?= markdown($comment->content) ?></div>
                 <div class="meta">
@@ -85,6 +86,7 @@ function printEdit($post, $type)
 
 <?php foreach ($answers as $answer) : ?>
     <div class="answer <?= ownPost($answer) ? "own" : "" ?>">
+        <a class="anchor" name="answer<?= $answer->id ?>"></a>
         <?php if ($answer->id == $question->answerId) : ?>
             <h4>Accepted answer</h4>
         <?php endif; ?>
@@ -102,6 +104,7 @@ function printEdit($post, $type)
         <div class="comments">
             <?php foreach ($answer->comments() as $comment) : ?>
                 <div class="comment <?= ownPost($comment) ? "own" : "" ?>">
+                    <a class="anchor" name="comment<?= $comment->id ?>"></a>
                     <?= printEdit($comment, "comment") ?>
                     <div class="content"><?= markdown($comment->content) ?></div>
                     <div class="meta">

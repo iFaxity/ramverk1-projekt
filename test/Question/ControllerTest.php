@@ -284,13 +284,14 @@ class ControllerTest extends ControllerTestCase
         $this->assertInstanceOf(\Anax\Response\Response::class, $res);
 
         // Check if redirect header is set
+        $nextId = 12;
         $headers = $this->di->response->getHeaders();
-        $url = $this->di->url->create("question/3");
+        $url = $this->di->url->create("question/3#answer$nextId");
         $this->assertContains("Location: $url", $headers);
 
         // Check that the answer was created
         $answer = new Answer($this->di->dbqb);
-        $answer->findById(12);
+        $answer->findById($nextId);
         $this->assertIsInt($answer->id);
         $this->assertEquals($answer->questionId, 3);
         $this->assertEquals($answer->content, "New answer");

@@ -12,6 +12,11 @@ use Faxity\Models\Question;
  */
 class AnswerForm extends FormModel
 {
+    /** @var Question $question */
+    private $question;
+    /** @var Answer $answer */
+    private $answer;
+
     /**
      * Constructor injects with DI container.
      *
@@ -21,6 +26,7 @@ class AnswerForm extends FormModel
     public function __construct(ContainerInterface $di, Question $question)
     {
         parent::__construct($di);
+        $this->question = $question;
         $this->form->create(
             [
                 "id" => __CLASS__,
@@ -56,12 +62,12 @@ class AnswerForm extends FormModel
     public function callbackSubmit() : bool
     {
         $user = $this->di->auth->user;
-        $answer = new Answer($this->di->dbqb);
+        $this->answer = new Answer($this->di->dbqb);
 
-        $answer->userId = $user->id;
-        $answer->questionId = $this->form->value("id");
-        $answer->content = trim(htmlspecialchars_decode($this->form->value("content")));
-        $answer->save();
+        $this->answer->userId = $user->id;
+        $this->answer->questionId = $this->question->id;
+        $this->answer->content = trim(htmlspecialchars_decode($this->form->value("content")));
+        $this->answer->save();
 
         return true;
     }
@@ -75,8 +81,10 @@ class AnswerForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $id = $this->form->value("id");
+        $questionId = $this->answer->questionId;
+        $answerId = $this->answer->id;
+
         $this->di->flash->ok("Answer successfully created");
-        $this->di->response->redirect("question/$id")->send();
+        $this->di->response->redirect("question/$questionId#answer$answerId")->send();
     }
 }

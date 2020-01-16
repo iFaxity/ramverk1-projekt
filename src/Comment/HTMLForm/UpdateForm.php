@@ -74,8 +74,10 @@ class UpdateForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $id = $this->comment->questionId;
+        $questionId = $this->comment->questionId;
+        $commentId = $this->comment->id;
+
         $this->di->flash->ok("Comment successfully updated");
-        $this->di->response->redirect("question/$id")->send();
+        $this->di->response->redirect("question/$questionId#comment$commentId")->send();
     }
 }
