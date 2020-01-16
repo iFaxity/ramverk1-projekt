@@ -3,6 +3,7 @@
 namespace Faxity\Tag;
 
 use Anax\DI\DI;
+use Anax\Route\Exception\NotFoundException;
 use Faxity\Test\ControllerTestCase;
 use Faxity\DI\DISorcery;
 
@@ -52,10 +53,24 @@ class ControllerTest extends ControllerTestCase
         $body = $res->getBody();
         $this->assertContains('<h1>#webdev</h1>', $body);
         $this->assertContains('<ul class="questions">', $body);
+    }
 
-        // With invalid/no arguments
-        $this->assertFalse($this->controller->catchAll());
-        $this->assertFalse($this->controller->catchAll("Webdev", "SometaG"));
+
+    public function testCatchFail(): void
+    {
+        // With no arguments
+        populateTestDatabase();
+        $this->expectException(NotFoundException::class);
+        $this->controller->catchAll();
+    }
+
+
+    public function testCatchFail2(): void
+    {
+        // With too many arguments
+        populateTestDatabase();
+        $this->expectException(NotFoundException::class);
+        $this->controller->catchAll("Webdev", "SometaG");
     }
 
 
