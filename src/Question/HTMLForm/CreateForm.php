@@ -63,8 +63,6 @@ class CreateForm extends FormModel
         $tags = array_filter(array_unique($tags));
 
         foreach ($tags as $str) {
-            $str = strtolower(trim($str));
-
             $tag = new Tag($this->di->dbqb);
             $tag->find("tag", $str);
 
